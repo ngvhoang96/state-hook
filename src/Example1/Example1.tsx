@@ -1,15 +1,22 @@
-import { StateModel } from "../App";
 import { Consumer } from "./Comsumer";
-import { useStore } from "../state-hook";
+import { createStore } from "../state-hook";
 import { Name } from "./Name";
 import { Age } from "./Age";
+import { StateModel } from "../App";
 
-function Example1({ defaultState }: { defaultState: StateModel }) {
-  const [Provider, ctxValue, useSlices] = useStore<StateModel>(defaultState);
+const defaultState: StateModel = {
+  name: "Hoang",
+  age: 26,
+};
+
+export const [useStore, useSlices] = createStore(defaultState);
+
+function Example1() {
+  const [StoreProvider, storeValue] = useStore();
 
   return (
-    <Provider value={ctxValue}>
-      <Consumer {...{ useSlices }} />
+    <StoreProvider value={storeValue}>
+      <Consumer />
       <table>
         <thead>
           <tr>
@@ -18,11 +25,11 @@ function Example1({ defaultState }: { defaultState: StateModel }) {
           </tr>
         </thead>
         <tbody>
-          <Name {...{ useSlices }} />
-          <Age {...{ useSlices }} />
+          <Name />
+          <Age />
         </tbody>
       </table>
-    </Provider>
+    </StoreProvider>
   );
 }
 

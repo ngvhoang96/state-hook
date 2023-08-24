@@ -1,7 +1,6 @@
-import { StateModel } from "../App";
-import { StoreConsumer } from "../state-hook";
+import { useSlices } from "./Example1";
 
-export const Age: StoreConsumer<StateModel> = ({ useSlices }) => {
+export const Age = () => {
   const useSlice = useSlices();
   const [age, setAge] = useSlice("age");
 
@@ -12,11 +11,11 @@ export const Age: StoreConsumer<StateModel> = ({ useSlices }) => {
     <tr>
       <td>Age</td>
       <td>
-        <button onClick={increaseAge}>-</button>
+        <button onClick={decreaseAge}>-</button>
         {" "}
         {age}
         {" "}
-        <button onClick={decreaseAge}>+</button>
+        <button onClick={increaseAge}>+</button>
       </td>
     </tr>
   )

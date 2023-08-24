@@ -10,11 +10,11 @@ export const Age = () => {
     <tr>
       <td>Age</td>
       <td>
-        <button onClick={increaseAge}>-</button>
+        <button onClick={decreaseAge}>-</button>
         {" "}
         {state.age}
         {" "}
-        <button onClick={decreaseAge}>+</button>
+        <button onClick={increaseAge}>+</button>
       </td>
     </tr>
   )

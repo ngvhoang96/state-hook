@@ -1,7 +1,6 @@
-import { StateModel } from "../App";
-import { StoreConsumer } from "../state-hook";
+import { useSlices } from "./Example1";
 
-export const Consumer: StoreConsumer<StateModel> = ({ useSlices }) => {
+export const Consumer = () => {
   const useSlice = useSlices();
   const [name] = useSlice("name");
   const [age] = useSlice("age");

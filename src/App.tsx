@@ -14,7 +14,9 @@ const defaultState = {
 function App() {
   return (
     <>
-      <Example1 {...{ defaultState }} />
+      <h2>Using new createStore</h2>
+      <Example1 />
+      <h2>Using React context API</h2>
       <Example2 {...{ defaultState }} />
     </>
   );

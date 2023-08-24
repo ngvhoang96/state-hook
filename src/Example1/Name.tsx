@@ -1,8 +1,7 @@
 import { ChangeEvent, useCallback } from "react";
-import { StateModel } from "../App";
-import { StoreConsumer } from "../state-hook";
+import { useSlices } from "./Example1";
 
-export const Name: StoreConsumer<StateModel> = ({ useSlices }) => {
+export const Name = () => {
   const useSlice = useSlices();
   const [name, setName] = useSlice("name");
 
