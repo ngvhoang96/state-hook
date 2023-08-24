@@ -6,18 +6,14 @@ export interface StateModel {
   age: number;
 }
 
-const defaultState = {
-  name: "Hoang",
-  age: 26,
-};
-
 function App() {
   return (
     <>
       <h2>Using new createStore</h2>
       <Example1 />
+      <br />
       <h2>Using React context API</h2>
-      <Example2 {...{ defaultState }} />
+      <Example2 />
     </>
   );
 }

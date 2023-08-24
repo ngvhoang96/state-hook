@@ -2,12 +2,17 @@ import { createContext, useContext, useState } from "react";
 import { Age } from "./Age";
 import { Name } from "./Name";
 import { Consumer } from "./Comsumer";
+import { ContextType } from "../hooks/store-hook";
 import { StateModel } from "../App";
-import { ContextType } from "../state-hook";
 
-const Context = createContext<ContextType<StateModel>>([{ age: 0, name: "hoang" }, () => { }])
+const defaultState = {
+  name: "Hoang",
+  age: 26,
+};
 
-function Example2({ defaultState }: { defaultState: StateModel }) {
+const Context = createContext<ContextType<StateModel>>([defaultState, () => { }])
+
+function Example2() {
   const [state, setState] = useState<StateModel>(defaultState);
 
   return (

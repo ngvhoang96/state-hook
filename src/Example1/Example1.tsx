@@ -1,8 +1,8 @@
 import { Consumer } from "./Comsumer";
-import { createStore } from "../state-hook";
 import { Name } from "./Name";
 import { Age } from "./Age";
 import { StateModel } from "../App";
+import { createStore } from "../hooks/store-hook";
 
 const defaultState: StateModel = {
   name: "Hoang",
@@ -13,6 +13,9 @@ export const [useStore, useSlices] = createStore(defaultState);
 
 function Example1() {
   const [StoreProvider, storeValue] = useStore();
+
+  const [state] = storeValue;
+  console.log(state);
 
   return (
     <StoreProvider value={storeValue}>
