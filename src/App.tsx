@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Example1 from "./Example1/Example1";
+import Example2 from "./Example2/Example2";
+
+export interface StateModel {
+  name: string;
+  age: number;
+}
+
+const defaultState = {
+  name: "Hoang",
+  age: 26,
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Example1 {...{ defaultState }} />
+      <Example2 {...{ defaultState }} />
+    </>
   );
 }
 
