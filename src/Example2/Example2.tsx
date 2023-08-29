@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { Age } from "./Age";
+import { createContext, useContext, useMemo, useState } from "react";
+import { Pet } from "./Pet";
 import { Name } from "./Name";
 import { Consumer } from "./Comsumer";
 import { ContextType } from "../hooks/store-hook";
@@ -7,7 +7,7 @@ import { StateModel } from "../App";
 
 const defaultState = {
   name: "Hoang",
-  age: 26,
+  pets: 2,
 };
 
 const Context = createContext<ContextType<StateModel>>([defaultState, () => { }])
@@ -15,8 +15,10 @@ const Context = createContext<ContextType<StateModel>>([defaultState, () => { }]
 function Example2() {
   const [state, setState] = useState<StateModel>(defaultState);
 
+  const ctxValue: ContextType<StateModel> = useMemo(() => [state, setState], [state, setState]);
+
   return (
-    <Context.Provider value={[state, setState]}>
+    <Context.Provider value={ctxValue}>
       <Consumer />
       <table>
         <thead>
@@ -27,13 +29,13 @@ function Example2() {
         </thead>
         <tbody>
           <Name />
-          <Age />
+          <Pet />
         </tbody>
       </table>
     </Context.Provider>
   );
 }
 
-export const useStore = () => useContext(Context);
+export const useAppContext = () => useContext(Context);
 
 export default Example2;

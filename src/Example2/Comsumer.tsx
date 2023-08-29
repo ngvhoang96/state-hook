@@ -1,8 +1,8 @@
-import { useStore } from "./Example2";
+import { useAppContext } from "./Example2";
 
 export const Consumer = () => {
-  const [state] = useStore();
+  const [state] = useAppContext();
   return (
-    <div>Hello {state.name}, {state.age} years old.</div>
+    <div>Hello {state.name}, {state.pets} pets.</div>
   )
 }

@@ -1,8 +1,8 @@
 import { ChangeEvent, useCallback } from "react";
-import { useStore } from "./Example2";
+import { useAppContext } from "./Example2";
 
 export const Name = () => {
-  const [state, setState] = useStore();
+  const [state, setState] = useAppContext();
 
   const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setState((prev) => ({

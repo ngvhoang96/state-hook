@@ -5,9 +5,9 @@ import {
   useCallback,
   Context,
 } from "react";
-import { ContextType, UseSlicesHook } from "./types";
+import { ContextType, UseSliceHook } from "./types";
 
-export function useSlices<T>(store: Context<ContextType<T>>): UseSlicesHook<T> {
+export function useSlices<T>(store: Context<ContextType<T>>): UseSliceHook<T> {
   const [ctxState, setCtxState] = useContext(store);
 
   const useStoreContext = useCallback(<K extends keyof T>(prop: K) => {

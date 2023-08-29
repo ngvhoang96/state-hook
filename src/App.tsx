@@ -3,7 +3,7 @@ import Example2 from "./Example2/Example2";
 
 export interface StateModel {
   name: string;
-  age: number;
+  pets: number;
 }
 
 function App() {

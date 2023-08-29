@@ -3,9 +3,9 @@ import { useSlices } from "./Example1";
 export const Consumer = () => {
   const useSlice = useSlices();
   const [name] = useSlice("name");
-  const [age] = useSlice("age");
+  const [pets] = useSlice("pets");
 
   return (
-    <div>Hello {name}, {age} years old.</div>
+    <div>Hello {name}, {pets} pets.</div>
   )
 }
