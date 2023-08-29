@@ -4,27 +4,31 @@ import {
   useContext,
   useCallback,
   Context,
+  useMemo,
 } from "react";
 import { ContextType, UseSliceHook } from "./types";
+import { getPropertyMap } from "./_getPropertyMap";
 
-export function useSlices<T>(store: Context<ContextType<T>>): UseSliceHook<T> {
+export function useSlices<T extends Record<string, any>>(store: Context<ContextType<T>>): UseSliceHook<T> {
   const [ctxState, setCtxState] = useContext(store);
+  const propertyMap = useMemo(() => getPropertyMap(ctxState), [ctxState]);
 
-  const useStoreContext = useCallback(<K extends keyof T>(prop: K) => {
-    const value = ctxState[prop];
+  const useSlice = useCallback(<K>(propSelector: (_: T) => K) => {
+    const value = propSelector(ctxState);
+    const propName = propSelector(propertyMap as T) as string;
 
-    const setValue: Dispatch<SetStateAction<T[K]>> = (arg) => {
+    const setValue: Dispatch<SetStateAction<K>> = (arg) => {
       const isUsingFunction = arg instanceof Function;
 
       setCtxState((prevState) => ({
         ...prevState,
-        [String(prop)]: isUsingFunction ? arg(prevState[prop]) : arg,
+        [propName]: isUsingFunction ? arg(propSelector(prevState)) : arg,
       }));
     }
     return [value, setValue] as const;
-  }, [ctxState, setCtxState]);
+  }, [ctxState, propertyMap, setCtxState]);
 
-  return useStoreContext;
+  return useSlice;
 }
 
 export default useSlices;

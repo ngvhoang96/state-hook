@@ -3,7 +3,7 @@ import { useSlices } from "./Example1";
 
 export const Name = () => {
   const useSlice = useSlices();
-  const [name, setName] = useSlice("name");
+  const [name, setName] = useSlice(state => state.name);
 
   const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);

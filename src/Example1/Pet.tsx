@@ -2,7 +2,7 @@ import { useSlices } from "./Example1";
 
 export const Pet = () => {
   const useSlice = useSlices();
-  const [pets, setPets] = useSlice("pets");
+  const [pets, setPets] = useSlice(state => state.pets);
 
   const increasePet = () => setPets((a) => a + 1);
   const decreasePet = () => setPets((a) => a - 1);
