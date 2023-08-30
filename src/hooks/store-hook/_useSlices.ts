@@ -6,10 +6,10 @@ import {
   Context,
   useMemo,
 } from "react";
-import { ContextType, UseSliceHook } from "./types";
+import { ContextType, UseSlicesHook } from "./types";
 import { getPropertyMap } from "./_getPropertyMap";
 
-export function useSlices<T extends Record<string, any>>(store: Context<ContextType<T>>): UseSliceHook<T> {
+export function useSlices<T extends Record<string, any>>(store: Context<ContextType<T>>): UseSlicesHook<T> {
   const [ctxState, setCtxState] = useContext(store);
   const propertyMap = useMemo(() => getPropertyMap(ctxState), [ctxState]);
 

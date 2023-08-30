@@ -1,32 +1,32 @@
 import { createContext } from "react";
-import { ContextType, StoreType, StoreTypeWithAction } from "./types";
-import { useStore } from "./_useStore";
+import { ContextType, ActionsWrapper, StoreType, StoreTypeWithAction } from "./types";
+import { useStoreProvider } from "./_useStoreProvider";
 import { useSlices } from "./_useSlices";
-import useCustomActions, { Action } from "./_useCustomActions";
+import { useActions } from "./_useActions";
 
 export function createStore<T extends Record<string, any>>(
   defaultState: T,
 ): StoreType<T>; // overload #1
-export function createStore<T extends Record<string, any>, A extends Action<T>>(
+export function createStore<T extends Record<string, any>, A extends ActionsWrapper<T>>(
   defaultState: T,
-  customActions: A,
+  actionsWrapper: A,
 ): StoreTypeWithAction<T, A>; // overload #2
-export function createStore<T extends Record<string, any>, A extends Action<T>>(
+export function createStore<T extends Record<string, any>, A extends ActionsWrapper<T>>(
   defaultState: T,
-  customActions?: A,
+  actionsWrapper?: A,
 ): StoreType<T> | StoreTypeWithAction<T, A> { //base function
   const store = createContext<ContextType<T>>([defaultState, () => { }]);
 
-  if (customActions !== undefined) {
+  if (actionsWrapper) {
     return [
-      () => useStore(store, defaultState),
+      () => useStoreProvider(store, defaultState),
       () => useSlices(store),
-      () => useCustomActions(store, customActions),
+      () => useActions(store, actionsWrapper),
     ];
   }
 
   return [
-    () => useStore(store, defaultState),
+    () => useStoreProvider(store, defaultState),
     () => useSlices(store),
   ];
 }

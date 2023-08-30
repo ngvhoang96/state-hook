@@ -1,4 +1,6 @@
-import { PropertyMap } from "./types";
+export type PropertyMap<T> = {
+  [P in keyof T]: P;
+}
 
 export function getPropertyMap<T extends Record<string, any>>(object: T): PropertyMap<T> {
   const result = {} as PropertyMap<T>;

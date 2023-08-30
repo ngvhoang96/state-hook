@@ -3,20 +3,23 @@ import {
   SetStateAction,
   Provider,
 } from "react";
-import { Action, ActionMapper } from "./_useCustomActions";
-
-export type PropertyMap<T> = {
-  [P in keyof T]: P;
-}
+import { ActionMapper } from "./_useActions";
 
 export type ContextType<T> = readonly [T, Dispatch<SetStateAction<T>>];
 
-export type UseSliceHook<T> = <K>(propSelector: (_: T) => K) => readonly [K, Dispatch<SetStateAction<K>>];
+export type Action<M> = (state: M, setState: Dispatch<SetStateAction<M>>) => any;
+export type ActionsWrapper<M> = Record<string, Action<M>>;
 
-export type UseStoreHook<T> = [Provider<ContextType<T>>, ContextType<T>];
+export type UseStoreProviderHook<T> = [Provider<ContextType<T>>, ContextType<T>];
+export type UseSlicesHook<T> = <K>(propSelector: (_: T) => K) => readonly [K, Dispatch<SetStateAction<K>>];
+export type UseActionsHook<T, A extends ActionsWrapper<T>> = ActionMapper<T, A>;
 
-export type UseCustomActionsHook<T, A extends Action<T>> = ActionMapper<T, A>;
-
-export type StoreType<T> = [() => UseStoreHook<T>, () => UseSliceHook<T>];
-
-export type StoreTypeWithAction<T, A extends Action<T>> = [() => UseStoreHook<T>, () => UseSliceHook<T>, () => UseCustomActionsHook<T, A>];
+export type StoreType<T> = [
+  () => UseStoreProviderHook<T>,
+  () => UseSlicesHook<T>,
+];
+export type StoreTypeWithAction<T, A extends ActionsWrapper<T>> = [
+  () => UseStoreProviderHook<T>,
+  () => UseSlicesHook<T>,
+  () => UseActionsHook<T, A>,
+];
