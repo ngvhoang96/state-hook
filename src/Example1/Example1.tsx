@@ -3,6 +3,7 @@ import { Name } from "./Name";
 import { Pet } from "./Pet";
 import { StateModel } from "../App";
 import { createStore } from "../hooks/store-hook";
+import { Demo } from "./demo";
 
 const defaultState: StateModel = {
   name: "Hoang",
@@ -27,6 +28,7 @@ function Example1() {
         <tbody>
           <Name />
           <Pet />
+          <Demo />
         </tbody>
       </table>
     </StoreProvider>

@@ -4,6 +4,7 @@ import {
   Dispatch,
   SetStateAction,
   useContext,
+  useMemo,
 } from "react";
 import { ActionMapper, ActionsWrapper, ContextType } from "./types";
 
@@ -28,7 +29,7 @@ export function useActions<M, T extends ActionsWrapper<M>>(
 ): ActionMapper<M, T> {
   const [ctxState, setCtxState] = useContext(store);
 
-  return getActions(actionsWrapper, ctxState, setCtxState);
+  return useMemo(() => getActions(actionsWrapper, ctxState, setCtxState), [actionsWrapper, ctxState, setCtxState]);
 }
 
 export default useActions;

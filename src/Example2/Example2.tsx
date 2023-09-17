@@ -4,6 +4,7 @@ import { Name } from "./Name";
 import { Consumer } from "./Comsumer";
 import { ContextType } from "../hooks/store-hook";
 import { StateModel } from "../App";
+import { Demo } from "./demo";
 
 const defaultState = {
   name: "Hoang",
@@ -30,6 +31,7 @@ function Example2() {
         <tbody>
           <Name />
           <Pet />
+          <Demo />
         </tbody>
       </table>
     </Context.Provider>
