@@ -1,7 +1,7 @@
-import { useAppContext } from "./Example2";
+import { useContextApi } from "./useContextApi";
 
 export const Pet = () => {
-  const [state, setState] = useAppContext();
+  const [state, setState] = useContextApi();
 
   const increasePet = () => setState((prev) => ({ ...prev, pets: prev.pets + 1 }));
   const decreasePet = () => setState((prev) => ({ ...prev, pets: prev.pets - 1 }));

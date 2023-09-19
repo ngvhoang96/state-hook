@@ -1,8 +1,8 @@
 import { ChangeEvent, useCallback } from "react";
-import { useAppContext } from "./Example2";
+import { useContextApi } from "./useContextApi";
 
 export const Name = () => {
-  const [state, setState] = useAppContext();
+  const [state, setState] = useContextApi();
 
   const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setState((prev) => ({

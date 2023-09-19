@@ -1,7 +1,7 @@
-import { useAppContext } from "./Example2";
+import { useContextApi } from "./useContextApi";
 
 export const Consumer = () => {
-  const [state] = useAppContext();
+  const [state] = useContextApi();
 
   return (
     <div>{state.name} has {state.pets} pets.</div>
